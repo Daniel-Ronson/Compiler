@@ -1,7 +1,7 @@
 PROGRAM aba13;
 	VAR
 
-	   ab5,  cb  ,  be, eb: INTEGER; (* declare variables *)
+	   ab5,  cb  ,  be, eb: INTEGER;
 	BEGIN
 	   ab5   =  5    ;
 	   cb  =10;

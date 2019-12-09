@@ -15,6 +15,7 @@ private:
 	vector<string> tokens;
 	string single_token;
 	string fileName = "myfile.txt";
+	string outputFile = "output.txt";
 	bool comment_section = false;
 	const char* char_arr = 0;
 public:
@@ -34,25 +35,36 @@ public:
 		//for (int i = 0; i < tokens.size(); ++i) {
 		//	cout << tokens[i] << endl;
 		//}
-		
+			ofstream out;
+			out.open(outputFile);
 		for (int i = 0; i < tokens.size(); ++i) { //print tokens to screen, note - could be printed to excel file or anywhere
+			
 			if (tokens[i] ==";") {
 				cout << tokens[i] << "\n";
+				string str = tokens[i];
+				//str.append("\n");
+				out << str << '\n';
 		}
 			else if (tokens[i] == "PROGRAM") {
 				cout << tokens[i] << " ";
+				string str = tokens[i];
+				out << str << '\n';
 			}
 			else if (check_if_VAR_BEGIN(tokens[i])) {
 				cout << tokens[i] << endl;
+				string str = tokens[i];
+				out << str << '\n';
 			}
 			else{
 				cout << tokens[i] << " "; //gather tokens into vector
+				string str = tokens[i];
+				out << str << " ";
 			}
 			
 		}
 		
 	}
-	
+
 	void parseLine(string line) {
 		string parse;
 		stringstream ss(line);
