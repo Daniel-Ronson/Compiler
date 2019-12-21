@@ -43,21 +43,37 @@ public:
 				cout << tokens[i] << "\n";
 				string str = tokens[i];
 				//str.append("\n");
+				if (tokens[i] != "\t")
 				out << str << '\n';
 		}
 			else if (tokens[i] == "PROGRAM") {
 				cout << tokens[i] << " ";
 				string str = tokens[i];
-				out << str << '\n';
+				if (tokens[i] != "\t")
+				out << str << " ";
 			}
-			else if (check_if_VAR_BEGIN(tokens[i])) {
+			else if (check_if_VAR(tokens[i])) {
 				cout << tokens[i] << endl;
 				string str = tokens[i];
-				out << str << '\n';
+				if (tokens[i] != "\t")
+				out << "VAR" << '\n';
+			}
+			else if (check_if_BEGIN(tokens[i])) {
+				cout << tokens[i] << endl;
+				string str = tokens[i];
+				if (tokens[i] != "\t")
+				out << "BEGIN" << '\n';
+			}
+			else if (check_if_END(tokens[i])) {
+				cout << tokens[i] << endl;
+				string str = tokens[i];
+				if (tokens[i] != "\t")
+				out << "END." << '\n';
 			}
 			else{
 				cout << tokens[i] << " "; //gather tokens into vector
 				string str = tokens[i];
+				if (tokens[i] != "\t")
 				out << str << " ";
 			}
 			
@@ -72,7 +88,8 @@ public:
 		bool equal_sign = false;
 		//ss >> std::ws;
 		while (getline(ss, parse,' ')) { 
-
+			
+			
 		//	cout << line << " ";
 			if (is_comment_begin(parse)) {
 				comment_section = true;
@@ -85,18 +102,32 @@ public:
 				tokens.push_back(parse);
 		}
 		
+		
+		
 	}
-	bool check_if_VAR_BEGIN(string line) {
+	bool check_if_VAR(string line) {
 		regex var("(.*)(VAR)");
 		if (regex_match(line, var)) {
 			return true;
 		}
+
+		return false;
+	}
+	bool check_if_BEGIN(string line) {
 		regex begin("(.*)(BEGIN)");
 		if (regex_match(line, begin)) {
 			return true;
 		}
 		return false;
 	}
+	bool check_if_END(string line) {
+		regex begin("(.*)(END.)");
+		if (regex_match(line, begin)) {
+			return true;
+		}
+		return false;
+	}
+	
 	bool is_comment_begin(string line) {
 		string str = R"(\(\*)"; //escape ( and escape *
 		regex e(str); //set regex

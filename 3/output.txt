@@ -7,6 +7,6 @@ cb =10 ;
 PRINT('ab5=' , ab5) ;
 eb= cb + ab5  ;
 PRINT('eb=' ,eb )  ;
-be - 2*abc5 + eb ;
+be = 2*ab5 + eb ;
 PRINT( be )  ;
-END.
+END. 
